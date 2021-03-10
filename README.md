@@ -39,10 +39,14 @@ export REMOTE_AGENT_URL="http://127.0.0.1:5000/"
 Now you can start ActiveWorkflow. You should be able to create instances of
 this agent (named "Go Test Counter Agent"). Run it and send messages to it.
 
-If using Docker to run ActiveWorkflow, you'll need to use the `-e` parameter to
-`docker run` to pass `REMOTE_AGENT_URL` through to ActiveWorkflow. The address
-in the URL will also have to be updated to match where the agent is running
-(`127.0.0.1` is unlikely to be correct).
+If using [Docker to run ActiveWorkflow](https://docs.activeworkflow.org/#running-locally-with-docker),
+you'll need to use the `-e` parameter to `docker run` to pass `REMOTE_AGENT_URL` through
+to ActiveWorkflow. The address in the URL will also have to be updated to match where the agent
+is running (`127.0.0.1` is unlikely to be correct). Docker provides `host.docker.internal` for the host IP.
+Thus, you could run:
+```sh
+docker run -e REMOTE_AGENT_URL="http://host.docker.internal:5000/" -p 3000:3000 --rm automaticmode/active_workflow
+```
 
 Please note that this project is just a minimal example. Consider using a
 proper project structure when developing your own ActiveWorkflow agents.
